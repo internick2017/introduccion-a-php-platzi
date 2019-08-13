@@ -1,1 +1,1 @@
-# introduccion-a-php-platzi
+# curso-introduccion-php
