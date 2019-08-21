@@ -1,3 +1,7 @@
+<?php
+require_once("jobs.php");
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -45,48 +49,32 @@
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <li class="work-position">
-              <h5>PHP Developer</h5>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-              <strong>Achievements:</strong>
-              <ul>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-              </ul>
-            </li>
-            <li class="work-position">
-                <h5>PHP Developer</h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
+            <?php foreach ($jobs as $job):?>
               <li class="work-position">
-                  <h5>PHP Developer</h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
+                  <h5><?= $job->getTitle() ?></h5>
+                  <p><?= $job->getDescription() ?></p>
+                  <p><?= $job->getDurationAsString() ?></p>
                   <strong>Achievements:</strong>
                   <ul>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
                   </ul>
-                </li>
+              </li>
+            <?php endforeach;?>
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
+            <?php foreach ($projects as $project):?>
             <div class="project">
-                <h5>Project X</h5>
+                <h5><?= $project->getTitle() ?></h5>
                 <div class="row">
                     <div class="col-3">
                         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
                       </div>
                       <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
+                        <p><?= $project->getDescription() ?></p>
                         <strong>Technologies used:</strong>
                         <span class="badge badge-secondary">PHP</span>
                         <span class="badge badge-secondary">HTML</span>
@@ -94,21 +82,7 @@
                       </div>
                 </div>
             </div>
-            <div class="project">
-                <h5>Project X</h5>
-                <div class="row">
-                    <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
-                      </div>
-                      <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
-                        <strong>Technologies used:</strong>
-                        <span class="badge badge-secondary">PHP</span>
-                        <span class="badge badge-secondary">HTML</span>
-                        <span class="badge badge-secondary">CSS</span>
-                      </div>
-                </div>
-            </div>
+            <?php endforeach;?>
           </div>
       </div>
       <div class="col-3">
