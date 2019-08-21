@@ -1,7 +1,6 @@
 <?php
 
-require 'app/Models/Job.php';
-require 'app/Models/Project.php';
+require_once 'vendor/autoload.php';
 
 use App\Models\{Job, Project};
 
