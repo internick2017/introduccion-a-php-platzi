@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Models;
-class Job extends BaseElement
+
+use Illuminate\Database\Eloquent\Model;
+class Job extends Model
 {
-    public function __construct($title, $description)
-    {
-        $newTitle = 'Job: ' . $title;
-        parent::__construct($newTitle, $description);
-    }
+    protected $table = 'jobs';
 
     public function getDurationAsString()
     {
