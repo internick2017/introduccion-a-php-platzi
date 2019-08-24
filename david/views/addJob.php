@@ -1,44 +1,3 @@
-<?php
-
-require_once 'vendor/autoload.php';
-
-
-use Illuminate\Database\Capsule\Manager as Capsule;
-use App\Models\Job;
-
-
-$capsule = new Capsule;
-
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'cursophp',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-
-
-]);
-
-// Make this Capsule instance available globally via static methods... (optional)
-$capsule->setAsGlobal();
-
-// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-$capsule->bootEloquent();
-
-if ($_POST):
-
-  $job = new Job();
-  $job->title = $_POST['title'];
-  $job->description = $_POST['description'];
-  $job->save();
-
-endif;
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +11,7 @@ endif;
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form action="" method="post" class="form">
+    <form action="/david/job/store" method="post" class="form">
         <div class="form-group">
           <label for="title">Title</label>
           <input type="text" class="form-control" name="title" id="title" aria-describedby="input-title-description" placeholder="Title">
