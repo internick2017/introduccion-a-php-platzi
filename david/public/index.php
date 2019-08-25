@@ -67,4 +67,6 @@ $handler = $route->handler;
 $controllerName = $handler['controller'];
 $action = $handler['action'];
 $controller = new $controllerName;
-$controller->$action($request);
+$response = $controller->$action($request);
+
+echo $response->getBody();
