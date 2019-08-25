@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 
+session_start();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
@@ -14,16 +15,14 @@ use Zend\Diactoros\ServerRequestFactory;
 $capsule = new Capsule;
 
 $capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'cursophp',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
+    'driver' => 'mysql',
+    'host' => 'localhost',
+    'database' => 'cursophp',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-
-
+    'prefix' => '',
 ]);
 
 // Make this Capsule instance available globally via static methods... (optional)
@@ -55,6 +54,35 @@ $map->post('storeJobs', '/david/job/store', [
     'controller' => 'App\Controllers\JobController',
     'action' => 'store'
 ]);
+$map->get('passswordHash', '/david/passhash', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'passwordHash'
+]);
+$map->get('loginForm', '/david/login', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'getLogin'
+]);
+$map->get('logout', '/david/logout', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'getLogout'
+]);
+$map->post('auth', '/david/auth', [
+    'controller' => 'App\Controllers\AuthController',
+    'action' => 'postLogin'
+]);
+$map->get('admin', '/david/admin', [
+    'controller' => 'App\Controllers\AdminController',
+    'action' => 'getIndex',
+    'auth' => true
+]);
+$map->get('admin.profile.changePassword', '/david/admin/profile/changePassword', [
+    'controller' => 'App\Controllers\ProfileController',
+    'action' => 'changePassword'
+]);
+$map->post('admin.profile.savePassword', '/david/admin/profile/savePassword', [
+    'controller' => 'App\Controllers\ProfileController',
+    'action' => 'savePassword'
+]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
@@ -66,7 +94,21 @@ if (!$route) {
 $handler = $route->handler;
 $controllerName = $handler['controller'];
 $action = $handler['action'];
+$needsAuth = $handler['auth'] ?? false;
+
+if ($needsAuth && !isset($_SESSION['userId'])) {
+    echo 'Protected route';
+    die();
+}
+
 $controller = new $controllerName;
 $response = $controller->$action($request);
+
+foreach ($response->getHeaders() as $name => $values) {
+    foreach ($values as $value) {
+        header(sprintf('%s %s', $name, $value), false);
+    }
+}
+http_response_code($response->getStatusCode());
 
 echo $response->getBody();

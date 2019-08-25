@@ -32,15 +32,15 @@ class JobController extends BaseController
                 $logo->moveTo("uploads/$fileName");
             }
 
-            /* $job = new Job();
+            $job = new Job();
             $job->title = $requestData['title'];
             $job->description = $requestData['description'];
-            $job->save(); */
+            $job->save();
+
             $responseMessage = 'saved!';
         } catch (\Throwable $th) {
             $responseMessage = 'Holy Guacamole';
         }
-
         return $this->renderHTML('addJob.twig', ['responseMessage' => $responseMessage]);
     }
 }
