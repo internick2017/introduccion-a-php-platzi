@@ -68,7 +68,7 @@ class __TwigTemplate_4de2094bd6d32633647455645a7fa2dce9ea5bf05ee03890fa48816bdc2
         // line 15
         echo "
 
-    <form action=\"/david/job/store\" method=\"post\" class=\"form\">
+    <form action=\"/david/job/store\" method=\"post\" class=\"form\" enctype=\"multipart/form-data\">
         <div class=\"form-group\">
           <label for=\"title\">Title</label>
           <input type=\"text\" class=\"form-control\" name=\"title\" id=\"title\" aria-describedby=\"input-title-description\" placeholder=\"Title\">
@@ -78,6 +78,7 @@ class __TwigTemplate_4de2094bd6d32633647455645a7fa2dce9ea5bf05ee03890fa48816bdc2
         <div class=\"form-group\">
           <label for=\"description\">Description</label>
           <input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\" aria-describedby=\"input-description-description\" placeholder=\"Description\">
+          <input type=\"file\" name=\"logo\" id=\"logo\">
           <small id=\"input-description-description\" class=\"form-text text-muted\">Write your description</small>
         </div>
 
@@ -119,7 +120,7 @@ class __TwigTemplate_4de2094bd6d32633647455645a7fa2dce9ea5bf05ee03890fa48816bdc2
     {% endif %}
 
 
-    <form action=\"/david/job/store\" method=\"post\" class=\"form\">
+    <form action=\"/david/job/store\" method=\"post\" class=\"form\" enctype=\"multipart/form-data\">
         <div class=\"form-group\">
           <label for=\"title\">Title</label>
           <input type=\"text\" class=\"form-control\" name=\"title\" id=\"title\" aria-describedby=\"input-title-description\" placeholder=\"Title\">
@@ -129,6 +130,7 @@ class __TwigTemplate_4de2094bd6d32633647455645a7fa2dce9ea5bf05ee03890fa48816bdc2
         <div class=\"form-group\">
           <label for=\"description\">Description</label>
           <input type=\"text\" class=\"form-control\" name=\"description\" id=\"description\" aria-describedby=\"input-description-description\" placeholder=\"Description\">
+          <input type=\"file\" name=\"logo\" id=\"logo\">
           <small id=\"input-description-description\" class=\"form-text text-muted\">Write your description</small>
         </div>
 

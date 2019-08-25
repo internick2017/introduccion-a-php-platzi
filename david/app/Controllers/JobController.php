@@ -23,10 +23,19 @@ class JobController extends BaseController
 
         try {
             $jobValidator->assert($requestData);
-            $job = new Job();
+
+            $files = $request->getUploadedFiles();
+            $logo = $files['logo'];
+
+            if ($logo->getError() === UPLOAD_ERR_OK) {
+                $fileName = $logo->getClientFilename();
+                $logo->moveTo("uploads/$fileName");
+            }
+
+            /* $job = new Job();
             $job->title = $requestData['title'];
             $job->description = $requestData['description'];
-            $job->save();
+            $job->save(); */
             $responseMessage = 'saved!';
         } catch (\Throwable $th) {
             $responseMessage = 'Holy Guacamole';
