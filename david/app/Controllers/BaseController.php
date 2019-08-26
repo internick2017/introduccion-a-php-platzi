@@ -14,7 +14,7 @@ class BaseController {
         $loader = new FilesystemLoader('../views');
         $this->templateEngine = new Environment($loader, [
             'debug' => true,
-            'cache' => '../views/compilation_cache',
+            'cache' => false,
         ]);
     }
 
