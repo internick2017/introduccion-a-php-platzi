@@ -14,6 +14,11 @@ $jobs= [
   
 ];
 
+$var1 = 5
+if($var1 > 2) {
+  echo 'es mayor que 2'
+}
+
 ?>
 <!doctype html>
 <html lang="en">
